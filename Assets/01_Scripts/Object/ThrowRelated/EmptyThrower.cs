@@ -5,7 +5,7 @@ using UnityEngine;
 public class EmptyThrower : MonoBehaviour,Thrower {
 
     [SerializeField]
-    private GameObject gameObject;
+    private GameObject _thrownObejct;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +23,6 @@ public class EmptyThrower : MonoBehaviour,Thrower {
 
     public void Throw()
     {
-        Instantiate(gameObject, transform.position, Quaternion.identity);
+        Instantiate(_thrownObejct, transform.position, Quaternion.identity);
     }
 }
