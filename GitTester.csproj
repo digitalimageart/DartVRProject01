@@ -250,6 +250,12 @@
     <Reference Include="UnityEditor.VR">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
     </Reference>
+    <Reference Include="Vuforia.UnityExtensions.Editor">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Editor/Vuforia.UnityExtensions.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Vuforia.UnityExtensions">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
     </Reference>
@@ -283,7 +289,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\01_Scripts\Data\DataManager.cs" />
+    <Compile Include="Assets\01_Scripts\Object\EmptyThrower.cs" />
     <Compile Include="Assets\01_Scripts\Object\Thrower.cs" />
+    <Compile Include="Assets\01_Scripts\Object\ThrownCube.cs" />
     <Compile Include="Assets\01_Scripts\Object\ThrownObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

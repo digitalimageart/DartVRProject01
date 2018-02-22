@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 53
+  controlID: 141
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -474,13 +474,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.013947778, y: 0.70993066, z: -0.014065277, w: -0.70399344}
+    m_Target: {x: -0.028315105, y: -0.5261436, z: 0.017532205, w: -0.8497436}
     speed: 2
-    m_Value: {x: -0.013947778, y: 0.70993066, z: -0.014065277, w: -0.7039934}
+    m_Value: {x: -0.028315097, y: -0.5261435, z: 0.017532201, w: -0.8497434}
   m_Size:
-    m_Target: 24.191067
+    m_Target: 227.08424
     speed: 2
-    m_Value: 24.191067
+    m_Value: 227.08424
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -566,7 +566,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 84fbffff00000000
+    m_ExpandedIDs: d2faffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -628,19 +628,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/01_Scripts
+    - Assets/01_Scripts/Object
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/01_Scripts
+  - Assets/01_Scripts/Object
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\rhkdd\Desktop\GitTester
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c4270000
-    m_LastClickedID: 10180
-    m_ExpandedIDs: 000000006627000000ca9a3bffffff7f
+    m_SelectedIDs: 9c290000
+    m_LastClickedID: 10652
+    m_ExpandedIDs: 000000002c2900008c29000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -668,7 +668,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000066270000
+    m_ExpandedIDs: 000000002c290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
