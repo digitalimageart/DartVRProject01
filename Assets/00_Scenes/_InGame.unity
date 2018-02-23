@@ -487,7 +487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thrownObject: {fileID: 1713781036754730, guid: 0f8a471e5537f864ebdb454fe82308eb,
     type: 2}
-  _throwerPower: 5000
+  _throwerPower: 3000
 --- !u!1 &1889035940
 GameObject:
   m_ObjectHideFlags: 0
