@@ -15,12 +15,12 @@ public abstract class ControllableThrower : MonoBehaviour, Thrower{
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(_controllerType))
+        if (Input.GetKeyDown((KeyCode) _controllerType))
         {
             StartCoroutine("PressContinuously");
         }
 
-        if (Input.GetMouseButtonUp(_controllerType))
+        if (Input.GetKeyUp((KeyCode) _controllerType))
         {
             StopCoroutine("PressContinuously");
             ThrowObject();
