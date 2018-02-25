@@ -34,5 +34,6 @@ public class AutoThrower : MonoBehaviour,Thrower {
     public void MakeThrownObject()
     {
         madeObejct = Instantiate(_thrownObject, transform.position, Quaternion.identity);
+        
     }   
 }
