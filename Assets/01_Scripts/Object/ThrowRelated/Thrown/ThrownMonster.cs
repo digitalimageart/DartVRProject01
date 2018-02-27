@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ThrownMonster : ThrownObject
 {
-    public override void hit()
+    public override void hit(GameObject obj)
     {
     }
-    
 }

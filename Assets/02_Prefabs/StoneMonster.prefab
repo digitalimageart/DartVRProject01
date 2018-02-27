@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 114489361866395698}
   - component: {fileID: 54179768290480452}
   - component: {fileID: 65248397187052108}
-  - component: {fileID: 114510791665522306}
+  - component: {fileID: 114279215376043196}
   m_Layer: 0
   m_Name: StoneMonster
   m_TagString: Untagged
@@ -323,6 +323,19 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114279215376043196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713781036754730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a453772d3899b40b68bc9bdbf093ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathCount: 4
+  _addingScore: -10
 --- !u!114 &114489361866395698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,18 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8eeb9411d2d4e4180ec70be187c615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114510791665522306
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1713781036754730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2433d2cca37a743bfc0e651c1671c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deathCount: 4
 --- !u!137 &137944918822585846
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
