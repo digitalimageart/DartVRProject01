@@ -26,6 +26,7 @@ public abstract class Bullet : MonoBehaviour {
         {
             Hit(other.gameObject);
             Destroy(this.gameObject);
+            DataManager.Instance.CheckGameOver();
         }
     }
 

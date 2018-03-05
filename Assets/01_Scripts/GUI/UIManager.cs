@@ -20,13 +20,22 @@ public class UIManager : MonoBehaviour {
         _hitEffectBackGround.color = clr;
     }
 
+    private void Update()
+    {
+        _time.text = DataManager.Instance.score.ToString();
+    }
+
     public void ChangeBGColor(COLOR_TYPE type) {
 
         Color color;
+        color = _hitEffectBackGround.color;
+        color.a = 1;
+        _hitEffectBackGround.color = color;
+
         
         switch (type) {
             case COLOR_TYPE.POSITIVE:
-                _hitEffectBackGround.color = Color.green;
+                _hitEffectBackGround.color = Color.cyan;
                 break;
             case COLOR_TYPE.NEGATIVE:
                 _hitEffectBackGround.color = Color.red;
@@ -44,14 +53,15 @@ public class UIManager : MonoBehaviour {
     IEnumerator ReduceAlpha(Color clr) {
 
         while (clr.a != 0) {
-            clr.a -= 0.1f;
-            yield return new WaitForSeconds(0.01f);
-        }
+            clr.a -= 0.2f*Time.deltaTime;
+            _hitEffectBackGround.color = clr;
 
+            yield return new WaitForSeconds(0.0001f);
+        }
     }
 
     public void ChangeGaugeScore(int score,int originScore) {
-        _gauge.fillAmount -= score/originScore; 
+        _gauge.fillAmount += score/originScore; 
     }
 
     public void ShowGameOver() {
@@ -68,8 +78,9 @@ public class UIManager : MonoBehaviour {
 
         while (clr.a != 0)
         {
-            clr.a -= 0.1f;
-            yield return new WaitForSeconds(0.1f);
+            clr.a -= 0.1f*Time.deltaTime;
+            _hitEffectBackGround.color = clr;
+            yield return new WaitForSeconds(0.01f);
         }
 
         _gameOver.text = "Game Over";

@@ -10,6 +10,8 @@ public class DataManager : SingleTon<DataManager> {
     private int _score;
     public int score { get { return _score; } }
 
+    public bool isEffectBulletTime;
+
     [SerializeField]
     private UIManager _ui;
     [SerializeField]
@@ -22,6 +24,7 @@ public class DataManager : SingleTon<DataManager> {
     {
         stopwatch.Start();
         _score = INITIALSCORE;
+        isEffectBulletTime = false;
     }
 
     //StopWatch
@@ -30,16 +33,8 @@ public class DataManager : SingleTon<DataManager> {
         get { return new System.Diagnostics.Stopwatch(); }
     }
 
-    private void SaveResult() {
-    }
-
-    private void GameOver() {
-        stopwatch.Stop();
-        _ui.ShowGameOver();
-    }
-
     public void ChangeScore(int score) {
-        _score -= score;
+        _score += score;
         _ui.ChangeGaugeScore(_score, INITIALSCORE);
     }
 
@@ -51,6 +46,7 @@ public class DataManager : SingleTon<DataManager> {
     public void FireSpcAtk() {
         _ui.ChangeBGColor(COLOR_TYPE.SPECIAL);
         StartCoroutine("ChangePlayerTag");
+        isEffectBulletTime = true;
     }
 
     IEnumerator ChangePlayerTag()
@@ -60,6 +56,23 @@ public class DataManager : SingleTon<DataManager> {
         _player.tag = "Target";
     }
 
+    public void CheckGameOver()
+    {
+        if (_score < 0)
+        {
+            GameOver();
+        }
+    }
 
+    private void GameOver()
+    {
+        stopwatch.Stop();
+        _ui.ShowGameOver();
+        SaveResult();
+    }
+
+    private void SaveResult()
+    {
+    }
 
 }
