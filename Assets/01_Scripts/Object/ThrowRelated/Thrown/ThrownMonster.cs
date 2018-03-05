@@ -7,4 +7,8 @@ public class ThrownMonster : Bullet
     public override void Hit(GameObject obj)
     {
     }
+
+    public override void Effect()
+    {
+    }
 }
