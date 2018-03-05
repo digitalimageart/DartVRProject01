@@ -55,7 +55,7 @@ public class DataManager : MonoBehaviour {
 
     public void ChangeScore(int score) {
         _score -= score;
-        _ui.AffectScore(_score, INITIALSCORE);
+        _ui.ChangeGaugeScore(_score, INITIALSCORE);
     }
 
     public void FireBGColorChange(COLOR_TYPE type)

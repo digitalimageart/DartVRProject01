@@ -13,8 +13,12 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Text _time;
 
-    [SerializeField]
-    private int _imageScore;
+    public void Start()
+    {
+        Color clr = _hitEffectBackGround.color;
+        clr.a = 0f;
+        _hitEffectBackGround.color = clr;
+    }
 
     public void ChangeBGColor(COLOR_TYPE type) {
 
@@ -46,7 +50,7 @@ public class UIManager : MonoBehaviour {
 
     }
 
-    public void AffectScore(int score,int originScore) {
+    public void ChangeGaugeScore(int score,int originScore) {
         _gauge.fillAmount -= score/originScore; 
     }
 
