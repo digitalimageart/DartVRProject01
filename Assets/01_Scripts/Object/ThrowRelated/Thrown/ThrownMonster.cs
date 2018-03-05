@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrownMonster : ThrownObject
+public class ThrownMonster : Bullet
 {
-    public override void hit(GameObject obj)
+    public override void Hit(GameObject obj)
     {
     }
 }

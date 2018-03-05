@@ -11,14 +11,14 @@ public class MachineGun : ControllableThrower {
     {
         while (true)
         {
-            MakeThrownObject();
-            ThrowObject();
+            MakeBullet();
+            FireBullet();
             //이펙트 넣어주기
             yield return new WaitForSeconds(_fireInterval);
         }
     }
 
-    public override void ThrowObject()
+    public override void FireBullet()
     {
         madeObject.GetComponent<Rigidbody>().AddForce(this.transform.forward * _throwerPower);
     }

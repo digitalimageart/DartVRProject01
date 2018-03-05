@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ControllableThrower : MonoBehaviour, Thrower{
+public abstract class ControllableThrower : MonoBehaviour, Gunner{
 
     [SerializeField]
     private GameObject _thrownObject;
@@ -23,15 +23,15 @@ public abstract class ControllableThrower : MonoBehaviour, Thrower{
         if (Input.GetKeyUp((KeyCode) _controllerType))
         {
             StopCoroutine("PressContinuously");
-            ThrowObject();
+            FireBullet();
         }
     }
 
     protected abstract IEnumerator PressContinuously();
 
-    public abstract void ThrowObject();
+    public abstract void FireBullet();
 
-    public void MakeThrownObject()
+    public void MakeBullet()
     {
         madeObject = Instantiate(_thrownObject, transform.position, Quaternion.identity);
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoThrower : MonoBehaviour,Thrower {
+public class AutoThrower : MonoBehaviour,Gunner {
 
     [SerializeField]
     private GameObject _thrownObject;
@@ -20,18 +20,18 @@ public class AutoThrower : MonoBehaviour,Thrower {
     {
         while (true)
         {
-            MakeThrownObject();
-            ThrowObject();
+            MakeBullet();
+            FireBullet();
             yield return new WaitForSeconds(0.2f);
         }
     }
 
-    public void ThrowObject()
+    public void FireBullet()
     {
         madeObejct.GetComponent<Rigidbody>().AddForce(transform.forward * _throwerPower);
     }
 
-    public void MakeThrownObject()
+    public void MakeBullet()
     {
         madeObejct = Instantiate(_thrownObject, transform.position, Quaternion.identity);
         

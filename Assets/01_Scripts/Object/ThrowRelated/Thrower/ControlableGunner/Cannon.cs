@@ -7,7 +7,7 @@ public class Cannon : ControllableThrower
 
     protected override IEnumerator PressContinuously()
     {
-		MakeThrownObject ();
+		MakeBullet ();
 		madeObject.GetComponent<Rigidbody> ().useGravity = false;
         while (true)
         {
@@ -22,7 +22,7 @@ public class Cannon : ControllableThrower
         }
     }
 
-    public override void ThrowObject()
+    public override void FireBullet()
     {   
         if (madeObject != null)
         {

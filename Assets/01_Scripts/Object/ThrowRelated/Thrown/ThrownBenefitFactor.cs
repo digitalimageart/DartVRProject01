@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrownBenefitFactor : ThrownObject
-{
-    [SerializeField]
-    private int _addingScore;
+public class DARTBullet : Bullet{
 
-    public override void hit(GameObject obj)
+    public override void Effect()
     {
-        obj.GetComponent<Target>().AddScore(_addingScore);
-
-        //이펙트 넣기
+        
     }
+
+    public override void Hit(GameObject obj)
+    {
+        DataManager.Instance.FireBGColorChange(COLOR_TYPE.POSITIVE);
+        DataManager.Instance.ChangeScore(0);
+
+        Effect();
+    }
+
+    
+}
+
+public enum DART_TYPE {
+    D,
+    A,
+    R,
+    T
 }
