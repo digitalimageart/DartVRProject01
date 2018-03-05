@@ -45,10 +45,12 @@ public class DataManager : MonoBehaviour {
         get { return new System.Diagnostics.Stopwatch(); }
     }
 
-    private void SaveResult() { }
+    private void SaveResult() {
+    }
 
     private void GameOver() {
         stopwatch.Stop();
+        _ui.ShowGameOver();
     }
 
     public void ChangeScore(int score) {
