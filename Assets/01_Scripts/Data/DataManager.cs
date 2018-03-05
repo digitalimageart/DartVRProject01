@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour {
+public class DataManager : SingleTon<DataManager> {
 
     private const int INITIALSCORE = 10000;
-
-    // SingleTon
-    private static DataManager _intstance;
 
     //Read Only Score
     private int _score;
@@ -19,19 +16,7 @@ public class DataManager : MonoBehaviour {
     private GameObject _player;
 
     private DataManager() { }
-    public static DataManager Instance {
-        get
-        {
-            if (_intstance == null)
-            {
-                _intstance = (DataManager)GameObject.FindObjectOfType(typeof(DataManager));
-                if (_intstance == null)
-                    Debug.LogError("There needs to be one active MyClass script on a GameObject in your scene.");
-            }
-        
-            return _intstance;
-        }
-    }
+    
 
     private void Start()
     {

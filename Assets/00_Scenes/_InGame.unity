@@ -834,8 +834,7 @@ MonoBehaviour:
   _hitEffectBackGround: {fileID: 348532466}
   _gauge: {fileID: 1039370133}
   _gameOver: {fileID: 2124755943}
-  _time: {fileID: 0}
-  _imageScore: 0
+  _time: {fileID: 168034004}
 --- !u!114 &1734016467
 MonoBehaviour:
   m_ObjectHideFlags: 0
