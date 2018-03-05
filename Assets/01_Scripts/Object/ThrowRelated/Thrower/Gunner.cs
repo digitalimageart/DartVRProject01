@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface Thrower
 {
-    void MakeThrownObject();
-    void ThrowObject();
+    void MakeBullet();
+    void FireBullet();
 }
 
