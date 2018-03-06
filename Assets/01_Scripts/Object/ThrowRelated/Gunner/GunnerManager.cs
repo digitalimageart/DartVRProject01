@@ -10,27 +10,28 @@ public class GunnerManager : SingleTon<GunnerManager>
     private GameObject _newGunner;
 
     [SerializeField]
-    private GameObject point1;
+    private GameObject _point1;
 
     [SerializeField]
-    private GameObject point2;
+    private GameObject _point2;
 
     [SerializeField]
-    private GameObject point3;
+    private GameObject _point3;
 
-    private GameObject gunner;
+    private GameObject _madeGunner;
 
-    private List<GameObject> Gunners;
+    private List<GameObject> _gunners;
 
     void Start()
     {
+        _gunners = new List<GameObject>();
         MakeGunner();
     }
 
     private void MakeGunner()
     {
-        gunner = Instantiate(_newGunner, transform.position, Quaternion.identity);
-        gunner.GetComponent<AutoGunner>().setPoints(point1, point2, point3);
-        Gunners.Add(gunner);
+        _madeGunner = Instantiate(_newGunner, transform.position, Quaternion.identity);
+        _madeGunner.GetComponent<AutoGunner>().setPoints(_point1, _point2, _point3);
+        _gunners.Add(_madeGunner);
     }
 }

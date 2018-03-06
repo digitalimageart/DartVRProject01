@@ -5,7 +5,10 @@ using System.Collections;
 public class UIManager : MonoBehaviour {
 
     [SerializeField]
-    private Image _hitEffectBackGround;
+    private GameObject _hitEffectBackGround;
+    private CanvasGroup _hitEffectBackGroundCanvasGroup;
+    private Image _hitEffectBackGroundImg;
+
     [SerializeField]
     private Image _gauge;
     [SerializeField]
@@ -15,9 +18,8 @@ public class UIManager : MonoBehaviour {
 
     public void Start()
     {
-        Color clr = _hitEffectBackGround.color;
-        clr.a = 0f;
-        _hitEffectBackGround.color = clr;
+        _hitEffectBackGroundCanvasGroup = _hitEffectBackGround.GetComponent<CanvasGroup>();
+        _hitEffectBackGroundImg = _hitEffectBackGround.GetComponent<Image>();
     }
 
     private void Update()
@@ -27,34 +29,29 @@ public class UIManager : MonoBehaviour {
 
     public void ChangeBGColor(COLOR_TYPE type) {
 
-        Color color;
-        color = _hitEffectBackGround.color;
-        color.a = 1;
-        _hitEffectBackGround.color = color;
+        _hitEffectBackGroundCanvasGroup.alpha = 0.5f;
 
-        
         switch (type) {
             case COLOR_TYPE.POSITIVE:
-                _hitEffectBackGround.color = Color.cyan;
+                _hitEffectBackGroundImg.color= Color.cyan;
                 break;
             case COLOR_TYPE.NEGATIVE:
-                _hitEffectBackGround.color = Color.red;
+                _hitEffectBackGroundImg.color = Color.red;
                 break;
             case COLOR_TYPE.SPECIAL:
-                _hitEffectBackGround.color = Color.white;
+                _hitEffectBackGroundImg.color = Color.white;
                 break;
             default: break;    
         }
 
-        color = _hitEffectBackGround.color;
-        StartCoroutine(ReduceAlpha(color));
+        
+        StartCoroutine(ReduceAlpha(_hitEffectBackGroundCanvasGroup));
     }
 
-    IEnumerator ReduceAlpha(Color clr) {
+    IEnumerator ReduceAlpha(CanvasGroup grp) {
 
-        while (clr.a != 0) {
-            clr.a -= 0.2f*Time.deltaTime;
-            _hitEffectBackGround.color = clr;
+        while (grp.alpha != 0) {
+            grp.alpha -= 0.7f*Time.deltaTime;
 
             yield return new WaitForSeconds(0.0001f);
         }
@@ -71,19 +68,17 @@ public class UIManager : MonoBehaviour {
 
     IEnumerator GameOver()
     {
-        Color clr;
+        _hitEffectBackGroundImg.color = Color.black;
+        
+        _gameOver.text = "Game Over";
+        _time.text = "";
 
-        _hitEffectBackGround.color = Color.black;
-        clr = _hitEffectBackGround.color;
-
-        while (clr.a != 0)
+        while (_hitEffectBackGroundCanvasGroup.alpha != 1)
         {
-            clr.a -= 0.1f*Time.deltaTime;
-            _hitEffectBackGround.color = clr;
+            _hitEffectBackGroundCanvasGroup.alpha += 0.1f*Time.deltaTime;
+            
             yield return new WaitForSeconds(0.01f);
         }
-
-        _gameOver.text = "Game Over";
     }
 
 
