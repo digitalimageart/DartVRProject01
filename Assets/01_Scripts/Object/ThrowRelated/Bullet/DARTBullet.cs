@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DARTBullet : Bullet{
 
+    [SerializeField]
+    private DART_TYPE _dartType;
+
     public override void Effect()
     {
         
@@ -11,8 +14,7 @@ public class DARTBullet : Bullet{
 
     public override void Hit(GameObject obj)
     {
-        DataManager.Instance.FireBGColorChange(COLOR_TYPE.POSITIVE);
-        DataManager.Instance.ChangeScore(0);
+        DataManager.Instance.DARTBulletHit(_bulletPoint,COLOR_TYPE.POSITIVE,_dartType);
 
         Effect();
     }
@@ -21,7 +23,7 @@ public class DARTBullet : Bullet{
 }
 
 public enum DART_TYPE {
-    D,
+    D = 0,
     A,
     R,
     T

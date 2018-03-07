@@ -5,15 +5,17 @@ using UnityEngine;
 public class AutoGunner : MonoBehaviour,Gunner {
 
     [SerializeField]
-    private GameObject _thrownObject;
+    private GameObject _bulletObject;
     [SerializeField]
-    private float _throwerPower;
+    private float _firePower;
+    [SerializeField]
+    private float _fireInterval;
 
     private Transform point1;
     private Transform point2;
     private Transform point3;
 
-    private GameObject madeObejct;
+    private GameObject _madeBullet;
 
     public void setPoints(GameObject p1, GameObject p2, GameObject p3)
     {
@@ -56,11 +58,11 @@ public class AutoGunner : MonoBehaviour,Gunner {
 
     public void FireBullet()
     {
-        madeObejct.GetComponent<Rigidbody>().AddForce(transform.forward * _throwerPower);
+        _madeBullet.GetComponent<Rigidbody>().AddForce(transform.forward * _firePower);
     }
 
     public void MakeBullet()
     {
-        madeObejct = Instantiate(_thrownObject, transform.position, Quaternion.identity);
+        _madeBullet = Instantiate(_bulletObject, transform.position, Quaternion.identity);
     }   
 }

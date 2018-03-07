@@ -15,16 +15,18 @@ public class DataManager : SingleTon<DataManager> {
     [SerializeField]
     private UIManager _ui;
     [SerializeField]
-    private GameObject _player;
+    private Target _player;
+
+    private List<DART_TYPE?> _dartList;
 
     private DataManager() { }
-    
 
     private void Start()
     {
         stopwatch.Start();
         _score = INITIALSCORE;
         isEffectBulletTime = false;
+        _dartList = new List<DART_TYPE?>();
     }
 
     //StopWatch
@@ -33,12 +35,35 @@ public class DataManager : SingleTon<DataManager> {
         get { return new System.Diagnostics.Stopwatch(); }
     }
 
-    public void ChangeScore(int score) {
+    public void DARTBulletHit(int score, COLOR_TYPE color, DART_TYPE d_type) {
+        ChangeScore(score);
+        FireBGColorChange(color);
+        CollectDart(d_type);
+    }
+
+    public void NegativeBulletHit(int score, COLOR_TYPE color) {
+        ChangeScore(score);
+        FireBGColorChange(color);
+    }
+
+    private void CollectDart(DART_TYPE d_type) {
+
+        if (_dartList.Find(x => x == d_type) == null)
+        {
+            CheckGameOver();
+        }
+        else
+        {
+            _dartList.Add(d_type);
+        }
+    }
+
+    private void ChangeScore(int score) {
         _score += score;
         _ui.ChangeGaugeScore(_score, INITIALSCORE);
     }
 
-    public void FireBGColorChange(COLOR_TYPE type)
+    private void FireBGColorChange(COLOR_TYPE type)
     {
         _ui.ChangeBGColor(type);
     }
@@ -58,10 +83,11 @@ public class DataManager : SingleTon<DataManager> {
 
     public void CheckGameOver()
     {
-        if (_score < 0)
+        if (_score < 0 || _dartList.Count > 4)
         {
             GameOver();
         }
+        
     }
 
     private void GameOver()

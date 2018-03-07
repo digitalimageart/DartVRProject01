@@ -11,8 +11,7 @@ public class NegativeBullet : Bullet {
 
     public override void Hit(GameObject obj)
     {
-        DataManager.Instance.FireBGColorChange(COLOR_TYPE.NEGATIVE);
-        DataManager.Instance.ChangeScore(_bulletPoint);
+        DataManager.Instance.NegativeBulletHit(_bulletPoint, COLOR_TYPE.NEGATIVE);
 
         Effect();
     }
