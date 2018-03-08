@@ -14,8 +14,8 @@ public class DataManager : SingleTon<DataManager> {
 
     [SerializeField]
     private UIManager _ui;
-    [SerializeField]
-    private Target _player;
+    
+    public Target player;
 
     private List<DART_TYPE?> _dartList;
 
@@ -76,9 +76,9 @@ public class DataManager : SingleTon<DataManager> {
 
     IEnumerator ChangePlayerTag()
     {
-        _player.tag = "SpecialAtk";
+        player.tag = "SpecialAtk";
         yield return new WaitForSeconds(3f);
-        _player.tag = "Target";
+        player.tag = "Target";
     }
 
     public void CheckGameOver()
