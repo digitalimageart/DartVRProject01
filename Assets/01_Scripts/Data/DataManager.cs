@@ -9,7 +9,7 @@ public class DataManager : SingleTon<DataManager> {
     //Read Only Score
     private int _score;
     public int score { get { return _score; } }
-
+    [HideInInspector]
     public bool isEffectBulletTime;
 
     [SerializeField]
@@ -60,7 +60,7 @@ public class DataManager : SingleTon<DataManager> {
 
     private void ChangeScore(int score) {
         _score += score;
-        _ui.ChangeGaugeScore(_score, INITIALSCORE);
+        _ui.ChangeGaugeScore(score, INITIALSCORE);
     }
 
     private void FireBGColorChange(COLOR_TYPE type)

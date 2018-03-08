@@ -10,18 +10,18 @@ public class GunnerManager : SingleTon<GunnerManager>
     private GameObject _newGunner;
 
     [SerializeField]
-    private GameObject _point1;
+    private Transform _point1;
 
     [SerializeField]
-    private GameObject _point2;
+    private Transform _point2;
 
     [SerializeField]
-    private GameObject _point3;
-
-    private GameObject _madeGunner;
+    private Transform _point3;
 
     private List<GameObject> _gunners;
 
+    private GameObject _madeGunner;
+    
     void Start()
     {
         _gunners = new List<GameObject>();
@@ -31,7 +31,8 @@ public class GunnerManager : SingleTon<GunnerManager>
     private void MakeGunner()
     {
         _madeGunner = Instantiate(_newGunner, transform.position, Quaternion.identity);
-        _madeGunner.GetComponent<AutoGunner>().setPoints(_point1, _point2, _point3);
+        _madeGunner.GetComponent<AutoGunner>().SetPoints(_point1, _point2, _point3);
+        _madeGunner.GetComponent<AutoGunner>().SetFireInterval(Random.value * 3);
         _gunners.Add(_madeGunner);
     }
 }
