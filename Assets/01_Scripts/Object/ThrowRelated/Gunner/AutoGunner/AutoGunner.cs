@@ -5,45 +5,46 @@ using UnityEngine;
 public class AutoGunner : MonoBehaviour,Gunner {
 
     [SerializeField]
+    private Transform _tmpTarget;
+    [SerializeField]
     private GameObject _bulletObject;
-    [SerializeField]
-    private float _firePower;
-    [SerializeField]
-    private float _fireInterval;
-
-    private Transform point1;
-    private Transform point2;
-    private Transform point3;
-
-    private GameObject _madeBullet;
-
-    public void setPoints(GameObject p1, GameObject p2, GameObject p3)
+    
+    public float firePower
     {
-        point1 = p1.transform;
-        point2 = p2.transform;
-        point3 = p3.transform;
-
-        StartCoroutine("GunnerMove");
+        get; set;
     }
-
+    public float fireInterval
+    {
+        get;set;
+    }
+    public Vector3 target
+    {
+        get;set;
+    }
+    
+    private GameObject _madeBullet;
+    
+    
     IEnumerator GunnerMove()
     {
-        while(true)
+        Transform[] pos;
+
+        while (true)
         {
-            iTween.MoveTo(gameObject, iTween.Hash("x", point1.transform.position.x, "easeType", "easeInOutExpo", "loopType", "none", "y", point1.transform.position.y, "z", point1.transform.position.z));
-            yield return new WaitForSeconds(0.8f);
-            iTween.MoveTo(gameObject, iTween.Hash("x", point2.transform.position.x, "easeType", "easeInOutExpo", "loopType", "none", "y", point2.transform.position.y, "z", point2.transform.position.z));
-            yield return new WaitForSeconds(0.8f);
-            iTween.MoveTo(gameObject, iTween.Hash("x", point3.transform.position.x, "easeType", "easeInOutExpo", "loopType", "none", "y", point2.transform.position.y, "z", point3.transform.position.z));
-            yield return new WaitForSeconds(0.8f);
-            iTween.MoveTo(gameObject, iTween.Hash("x", point2.transform.position.x, "easeType", "easeInOutExpo", "loopType", "none", "y", point2.transform.position.y, "z", point2.transform.position.z));
-            yield return new WaitForSeconds(0.8f);
+            pos = GunnerManager.Instance.GetMakePositions();
+
+            for (int i = 0; i < 4; i++)
+            {
+                iTween.MoveTo(gameObject, iTween.Hash("x", pos[i].position.x, "y", pos[i].position.y, "z", pos[i].position.z, "easeType", "easeInOutExpo", "loopType", "none")); 
+                yield return new WaitForSeconds(0.8f);
+            }
         }
     }
 
     // Use this for initialization
     void Start () {
         StartCoroutine("ThrowContinuously");
+        StartCoroutine("GunnerMove");
 	}
 
     IEnumerator ThrowContinuously()
@@ -52,13 +53,13 @@ public class AutoGunner : MonoBehaviour,Gunner {
         {
             MakeBullet();
             FireBullet();
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(fireInterval);
         }
     }
 
     public void FireBullet()
     {
-        _madeBullet.GetComponent<Rigidbody>().AddForce(transform.forward * _firePower);
+        _madeBullet.GetComponent<Rigidbody>().AddForce( -target * firePower);
     }
 
     public void MakeBullet()

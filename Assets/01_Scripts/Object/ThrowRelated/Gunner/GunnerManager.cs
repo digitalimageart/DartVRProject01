@@ -7,31 +7,52 @@ public class GunnerManager : SingleTon<GunnerManager>
     private GunnerManager() { }
 
     [SerializeField]
-    private GameObject _newGunner;
-
+    private AutoGunner[] _gunnerNagativePrefab;
     [SerializeField]
-    private GameObject _point1;
+    private AutoGunner[] _gunnerDartPrefab;
+    
 
-    [SerializeField]
-    private GameObject _point2;
+    private List<AutoGunner> _gunners;
 
-    [SerializeField]
-    private GameObject _point3;
+    private AutoGunner _madeNegativeGunner;
+    private AutoGunner _madeDartGunner;
 
-    private GameObject _madeGunner;
-
-    private List<GameObject> _gunners;
-
+    private float[] _makeTime;
+    
     void Start()
     {
-        _gunners = new List<GameObject>();
-        MakeGunner();
+        _makeTime = new float[5];
+        _makeTime[0] = 20f;
+        _makeTime[1] = 20f;
+        _makeTime[2] = 20f;
+        _makeTime[3] = 20f;
+        _makeTime[4] = 20f;
+
+        _gunners = new List<AutoGunner>();
+        StartCoroutine("MakeNegativeGunners");
     }
 
-    private void MakeGunner()
+    IEnumerator MakeNegativeGunners()
     {
-        _madeGunner = Instantiate(_newGunner, transform.position, Quaternion.identity);
-        _madeGunner.GetComponent<AutoGunner>().setPoints(_point1, _point2, _point3);
-        _gunners.Add(_madeGunner);
+        for (int i = 0; i < 5; i++) {
+            MakeNegativeGunner(i +1);
+            yield return new WaitForSeconds(_makeTime[i]);
+        }
     }
+
+    private void MakeNegativeGunner(int i)
+    {
+        int rand = (new System.Random()).Next(0, 5);
+        _madeNegativeGunner = Instantiate(_gunnerNagativePrefab[rand], transform) as AutoGunner;
+        _madeNegativeGunner.fireInterval = 2f;
+        _madeNegativeGunner.firePower = 500 ;
+        _madeNegativeGunner.target = DataManager.Instance.player.transform.forward * -1 * 5;
+    }
+
+    public Transform[] GetMakePositions()
+    {
+        return GetComponent<PositionData>().GetPositions();
+    }
+
+
 }

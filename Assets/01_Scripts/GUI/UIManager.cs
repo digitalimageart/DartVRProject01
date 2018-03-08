@@ -79,6 +79,7 @@ public class UIManager : MonoBehaviour {
             
             yield return new WaitForSeconds(0.01f);
         }
+        StopCoroutine("GameOver");
     }
 
 

@@ -9,13 +9,13 @@ public class DataManager : SingleTon<DataManager> {
     //Read Only Score
     private int _score;
     public int score { get { return _score; } }
-
+    [HideInInspector]
     public bool isEffectBulletTime;
 
     [SerializeField]
     private UIManager _ui;
-    [SerializeField]
-    private Target _player;
+    
+    public Target player;
 
     private List<DART_TYPE?> _dartList;
 
@@ -60,7 +60,7 @@ public class DataManager : SingleTon<DataManager> {
 
     private void ChangeScore(int score) {
         _score += score;
-        _ui.ChangeGaugeScore(_score, INITIALSCORE);
+        _ui.ChangeGaugeScore(score, INITIALSCORE);
     }
 
     private void FireBGColorChange(COLOR_TYPE type)
@@ -76,9 +76,9 @@ public class DataManager : SingleTon<DataManager> {
 
     IEnumerator ChangePlayerTag()
     {
-        _player.tag = "SpecialAtk";
+        player.tag = "SpecialAtk";
         yield return new WaitForSeconds(3f);
-        _player.tag = "Target";
+        player.tag = "Target";
     }
 
     public void CheckGameOver()
