@@ -2,29 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoGunner : MonoBehaviour,Gunner {
+public class AutoGunner : Gunner { 
 
-    [SerializeField]
-    private Transform _tmpTarget;
-    [SerializeField]
-    private GameObject _bulletObject;
-    
-    public float firePower
+    public float fireInterval
     {
         get; set;
     }
-    public float fireInterval
+    public Transform target
     {
-        get;set;
+        get; set;
     }
-    public Vector3 target
-    {
-        get;set;
-    }
-    
-    private GameObject _madeBullet;
-    
-    
+
+
     IEnumerator GunnerMove()
     {
         Transform[] pos;
@@ -35,17 +24,18 @@ public class AutoGunner : MonoBehaviour,Gunner {
 
             for (int i = 0; i < 4; i++)
             {
-                iTween.MoveTo(gameObject, iTween.Hash("x", pos[i].position.x, "y", pos[i].position.y, "z", pos[i].position.z, "easeType", "easeInOutExpo", "loopType", "none")); 
+                iTween.MoveTo(gameObject, iTween.Hash("x", pos[i].position.x, "y", pos[i].position.y, "z", pos[i].position.z, "easeType", "easeInOutExpo", "loopType", "none"));
                 yield return new WaitForSeconds(0.8f);
             }
         }
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         StartCoroutine("ThrowContinuously");
         StartCoroutine("GunnerMove");
-	}
+    }
 
     IEnumerator ThrowContinuously()
     {
@@ -57,13 +47,8 @@ public class AutoGunner : MonoBehaviour,Gunner {
         }
     }
 
-    public void FireBullet()
+    public override void FireBullet()
     {
-        _madeBullet.GetComponent<Rigidbody>().AddForce( -target * firePower);
+        _madeBullet.GetComponent<Rigidbody>().AddForce((target.position - transform.position).normalized * firePower);
     }
-
-    public void MakeBullet()
-    {
-        _madeBullet = Instantiate(_bulletObject, transform.position, Quaternion.identity);
-    }   
 }
