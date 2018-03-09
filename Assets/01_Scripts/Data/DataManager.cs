@@ -11,6 +11,8 @@ public class DataManager : SingleTon<DataManager> {
     public int score { get { return _score; } }
     [HideInInspector]
     public bool isEffectBulletTime;
+    
+    public GameObject[] Effects;
 
     [SerializeField]
     private UIManager _ui;

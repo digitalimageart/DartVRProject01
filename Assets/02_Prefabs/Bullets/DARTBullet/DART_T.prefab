@@ -138,6 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a453772d3899b40b68bc9bdbf093ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathCount: 4
+  _deathCount: 10
   _bulletPoint: 0
   _dartType: 3

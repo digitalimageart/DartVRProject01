@@ -18,9 +18,17 @@ public class GunnerManager : SingleTon<GunnerManager>
     private AutoGunner _madeDartGunner;
 
     private float[] _makeTime;
+
+    private bool[] _isMadeType = new bool[5];
     
     void Start()
     {
+
+        for(int i = 0; i < 5; i++)
+        {
+            _isMadeType[i] = false;
+        }
+
         _makeTime = new float[5];
         _makeTime[0] = 20f;
         _makeTime[1] = 20f;
@@ -42,7 +50,13 @@ public class GunnerManager : SingleTon<GunnerManager>
 
     private void MakeNegativeGunner(int i)
     {
-        int rand = (new System.Random()).Next(0, 5);
+        int rand;
+        do
+        {
+            rand = (new System.Random()).Next(0, 5);
+        } while (_isMadeType[rand]);
+        _isMadeType[rand] = true;
+
         _madeNegativeGunner = Instantiate(_gunnerNagativePrefab[rand], transform) as AutoGunner;
         _madeNegativeGunner.fireInterval = 2;
         _madeNegativeGunner.firePower = 500;

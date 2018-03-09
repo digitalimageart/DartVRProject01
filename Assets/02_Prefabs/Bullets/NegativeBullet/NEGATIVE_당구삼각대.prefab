@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1790608651127694}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 632e1e4607a36904d9e93b195ee9013c, type: 3}
+  - {fileID: 2100000, guid: 2a352b446cb2d3448826da908d921543, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,5 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43c13b39d10ff74ca9fee673e40c098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathCount: 4
+  _deathCount: 10
   _bulletPoint: -200
