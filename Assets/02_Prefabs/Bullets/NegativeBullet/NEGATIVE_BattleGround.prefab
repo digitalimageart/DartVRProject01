@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54432262932842184}
   - component: {fileID: 114672079251758542}
   - component: {fileID: 65691561480059384}
+  - component: {fileID: 95810833899546160}
   m_Layer: 0
   m_Name: NEGATIVE_BattleGround
   m_TagString: Untagged
@@ -112,6 +113,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.44401264, y: 0.1417945, z: 0.0254}
   m_Center: {x: 0.00063755363, y: -0.0111175515, z: 0}
+--- !u!95 &95810833899546160
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954732323248388}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5252ce0519665e49bc9c7803073cfec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114672079251758542
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54555594143952226}
   - component: {fileID: 114202671291123206}
   - component: {fileID: 65531850770835818}
+  - component: {fileID: 111811472192823728}
   m_Layer: 0
   m_Name: DART_A
   m_TagString: Untagged
@@ -112,6 +113,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4774824, y: 1.6197461, z: 0.254}
   m_Center: {x: -0.024658322, y: 0.28766793, z: 0}
+--- !u!111 &111811472192823728
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262774850439294}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 206ac95b3772aed4684765bc5265504b, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114202671291123206
 MonoBehaviour:
   m_ObjectHideFlags: 1

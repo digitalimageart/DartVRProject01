@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54964217252659796}
   - component: {fileID: 114901869170612712}
   - component: {fileID: 65407870102544104}
+  - component: {fileID: 95957693450025576}
   m_Layer: 0
   m_Name: NEGATIVE_Friend
   m_TagString: Untagged
@@ -112,6 +113,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.23991099, y: 0.18172237, z: 0.0635}
   m_Center: {x: -0.0036276914, y: 0.0055354647, z: -0.0014111102}
+--- !u!95 &95957693450025576
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953034432418354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5252ce0519665e49bc9c7803073cfec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114901869170612712
 MonoBehaviour:
   m_ObjectHideFlags: 1
