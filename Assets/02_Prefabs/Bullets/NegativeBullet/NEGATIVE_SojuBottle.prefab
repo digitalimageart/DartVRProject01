@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54677852024768300}
   - component: {fileID: 114444663259207170}
   - component: {fileID: 65076795318454968}
+  - component: {fileID: 95423409806036996}
   m_Layer: 0
   m_Name: NEGATIVE_SojuBottle
   m_TagString: Untagged
@@ -112,6 +113,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1265933, y: 0.4178511, z: 0.12659949}
   m_Center: {x: 0.0005513951, y: -0.027256973, z: -0.0011257865}
+--- !u!95 &95423409806036996
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086021726121400}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5252ce0519665e49bc9c7803073cfec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114444663259207170
 MonoBehaviour:
   m_ObjectHideFlags: 1

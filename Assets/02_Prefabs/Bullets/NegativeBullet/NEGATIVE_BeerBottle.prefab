@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54742093944292078}
   - component: {fileID: 114412527309984994}
   - component: {fileID: 65228338465012534}
+  - component: {fileID: 95074123319569166}
   m_Layer: 0
   m_Name: NEGATIVE_BeerBottle
   m_TagString: Untagged
@@ -112,6 +113,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.10870909, y: 0.4017, z: 0.10867529}
   m_Center: {x: 0.000021338463, y: -0.05254574, z: -0.0000846833}
+--- !u!95 &95074123319569166
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1930238162643408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5252ce0519665e49bc9c7803073cfec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114412527309984994
 MonoBehaviour:
   m_ObjectHideFlags: 1

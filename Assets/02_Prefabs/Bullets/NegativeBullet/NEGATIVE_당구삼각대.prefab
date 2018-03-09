@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54794316620380036}
   - component: {fileID: 114061819403283064}
   - component: {fileID: 65013623244529138}
+  - component: {fileID: 95512122779316882}
   m_Layer: 0
   m_Name: "NEGATIVE_\uB2F9\uAD6C\uC0BC\uAC01\uB300"
   m_TagString: Untagged
@@ -112,6 +113,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3351479, y: 1.9193773, z: 0.25400007}
   m_Center: {x: 0.000086426735, y: 0.31218567, z: 0}
+--- !u!95 &95512122779316882
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790608651127694}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5252ce0519665e49bc9c7803073cfec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114061819403283064
 MonoBehaviour:
   m_ObjectHideFlags: 1
