@@ -51,7 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32fd2643e168a484fb636c9e304a1485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletObject: {fileID: 1953034432418354, guid: 729c4ca4e034ab846a84ab7583dbf24e,
+  _bulletObject: {fileID: 114901869170612712, guid: 729c4ca4e034ab846a84ab7583dbf24e,
     type: 2}
-  _firePower: 1000
-  _fireInterval: 1

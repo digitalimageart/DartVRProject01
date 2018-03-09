@@ -35,7 +35,7 @@ public class GunnerManager : SingleTon<GunnerManager>
     IEnumerator MakeNegativeGunners()
     {
         for (int i = 0; i < 5; i++) {
-            MakeNegativeGunner(i +1);
+            MakeNegativeGunner(i + 1);
             yield return new WaitForSeconds(_makeTime[i]);
         }
     }
@@ -44,9 +44,9 @@ public class GunnerManager : SingleTon<GunnerManager>
     {
         int rand = (new System.Random()).Next(0, 5);
         _madeNegativeGunner = Instantiate(_gunnerNagativePrefab[rand], transform) as AutoGunner;
-        _madeNegativeGunner.fireInterval = 2f;
-        _madeNegativeGunner.firePower = 500 ;
-        _madeNegativeGunner.target = DataManager.Instance.player.transform.forward * -1 * 5;
+        _madeNegativeGunner.fireInterval = 2;
+        _madeNegativeGunner.firePower = 500;
+        _madeNegativeGunner.target = DataManager.Instance.player.transform;
     }
 
     public Transform[] GetMakePositions()
