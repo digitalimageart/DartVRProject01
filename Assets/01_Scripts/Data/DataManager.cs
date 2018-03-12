@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class DataManager : SingleTon<DataManager> {
@@ -8,6 +9,9 @@ public class DataManager : SingleTon<DataManager> {
 
     //Read Only Score
     private int _score;
+
+    public List<PlayerResult> playerList = new List<PlayerResult>();
+
     public int score { get { return _score; } }
     [HideInInspector]
     public bool isEffectBulletTime;
@@ -99,8 +103,81 @@ public class DataManager : SingleTon<DataManager> {
         SaveResult();
     }
 
+
     private void SaveResult()
     {
     }
 
+    //IO
+
+
+    private string GetSaveRoute(string data)
+    {
+        string route;
+        string dirRoute;
+        DirectoryInfo dir;
+
+#if (UNITY_EDITOR)
+        route = Application.persistentDataPath + "/DataFiles/" + data + "/" + data + ".json";
+        dirRoute = Application.persistentDataPath + "/DataFiles/" + data;
+
+#elif (UNITY_STANDALONE_WIN)
+        route = Application.dataPath + "/"+data.ToString("G")+"/"+data.ToString("G")+".json";
+        dirRoute = Application.dataPath + "/"+data.ToString("G");
+#endif
+        dir = new DirectoryInfo(dirRoute);
+
+        if (dir.Exists == false)
+        {
+            dir.Create();
+        }
+
+        return route;
+
+    }
+    private void Load()
+    {
+        string JsonString;
+        string route = GetSaveRoute("players");
+
+        try
+        {
+            JsonString = File.ReadAllText(route);
+        }
+        catch (FileNotFoundException e)
+        {
+            Save();
+
+            JsonString = File.ReadAllText(route);
+        }
+
+        if (JsonString != "")
+            playerList = JsonHelper.FromJson<PlayerResult>(JsonString);
+    }
+
+    private void Save()
+    {
+        string Json;
+        string route;
+
+        List<PlayerResult> tmpJson = playerList;
+
+        if (tmpJson != null)
+            Json = JsonHelper.ToJson<PlayerResult>(tmpJson);
+        else
+            Json = null;
+
+        route = GetSaveRoute("players");
+
+        File.WriteAllText(route, Json);
+    }
+
+
+}
+
+public class PlayerResult
+{
+    string name;
+    string department;
+    int score;
 }
