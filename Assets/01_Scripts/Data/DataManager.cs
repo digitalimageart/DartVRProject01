@@ -38,6 +38,9 @@ public class DataManager : SingleTon<DataManager> {
     
     public Target player;
 
+    [SerializeField]
+    private CollectedDart[] _darts;
+
     private List<DART_TYPE?> _dartList;
 
     private DataManager() { }
@@ -70,10 +73,8 @@ public class DataManager : SingleTon<DataManager> {
         if (_dartList.Find(x => x == d_type) == null)
         {
             CheckGameOver();
-        }
-        else
-        {
             _dartList.Add(d_type);
+            _darts[(int)d_type].Collected();
         }
     }
 
@@ -102,14 +103,13 @@ public class DataManager : SingleTon<DataManager> {
 
     public void CheckGameOver()
     {
-        if (_score < 0 || _dartList.Count > 4)
+        if (_score < 0 || _dartList.Count == 4)
         {
             GameOver();
         }
-        
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         player.tag = "GameOver";
         timer.Stop();

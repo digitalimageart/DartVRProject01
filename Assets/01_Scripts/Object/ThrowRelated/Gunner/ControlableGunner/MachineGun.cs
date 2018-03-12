@@ -23,4 +23,8 @@ public class MachineGun : ControllableThrower {
         madeObject.GetComponent<Rigidbody>().AddForce(this.transform.forward * _throwerPower);
     }
 
+    public override void MakeBullet()
+    {
+        throw new System.NotImplementedException();
+    }
 }

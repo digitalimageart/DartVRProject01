@@ -7,11 +7,13 @@ public class GunnerManager : SingleTon<GunnerManager>
     private GunnerManager() { }
 
     [SerializeField]
-    private AutoGunner[] _gunnerNagativePrefab;
-    [SerializeField]
-    private AutoGunner[] _gunnerDartPrefab;
-    
+    private AutoGunner _gunnerPrefab;
 
+    [SerializeField]
+    private DARTBullet[] _dartBullets;
+    [SerializeField]
+    private NegativeBullet[] _negativeBullets;
+    
     private List<AutoGunner> _gunners;
 
     private AutoGunner _madeNegativeGunner;
@@ -38,6 +40,7 @@ public class GunnerManager : SingleTon<GunnerManager>
 
         _gunners = new List<AutoGunner>();
         StartCoroutine("MakeNegativeGunners");
+        MakeDartGunner();
     }
 
     IEnumerator MakeNegativeGunners()
@@ -50,17 +53,29 @@ public class GunnerManager : SingleTon<GunnerManager>
 
     private void MakeNegativeGunner(int i)
     {
-        int rand;
-        do
-        {
-            rand = (new System.Random()).Next(0, 5);
-        } while (_isMadeType[rand]);
-        _isMadeType[rand] = true;
-
-        _madeNegativeGunner = Instantiate(_gunnerNagativePrefab[rand], transform) as AutoGunner;
-        _madeNegativeGunner.fireInterval = 2;
-        _madeNegativeGunner.firePower = 500;
+        _madeNegativeGunner = Instantiate(_gunnerPrefab, transform) as AutoGunner;
+        _madeNegativeGunner.firePower = 1200;
         _madeNegativeGunner.target = DataManager.Instance.player.transform;
+        _madeNegativeGunner.type = GUNNER_TYPE.NEGATIVE;
+    }
+
+    public Bullet ReturnRandomNegativeBullet()
+    {
+        return _negativeBullets[(new System.Random()).Next(0, 5)];
+    }
+
+    private void MakeDartGunner()
+    {
+        _madeDartGunner = Instantiate(_gunnerPrefab, transform) as AutoGunner;
+        _madeDartGunner.fireInterval = 5f;
+        _madeDartGunner.firePower = 700;
+        _madeDartGunner.target = DataManager.Instance.player.transform;
+        _madeDartGunner.type = GUNNER_TYPE.DART;
+    }
+
+    public Bullet RetunRandomDartBullet()
+    {
+        return _dartBullets[(new System.Random()).Next(0, 4)];
     }
 
     public Transform[] GetMakePositions()

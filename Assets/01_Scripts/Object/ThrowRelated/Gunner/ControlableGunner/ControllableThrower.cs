@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ControllableThrower : Gunner{
 
     [SerializeField]
-    private GameObject _thrownObject;
+    protected GameObject _thrownObject;
     [SerializeField]
     protected float _throwerPower;
     [SerializeField]
@@ -13,24 +13,28 @@ public abstract class ControllableThrower : Gunner{
 
     protected GameObject madeObject;
 
+    private bool triggerButtonDown = false;
+    private SteamVR_TrackedObject trackedObj;
+    private SteamVR_Controller.Device device;
+
+
+    private void Start()
+    {
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+    }
     private void Update()
     {
-        if (Input.GetKeyDown((KeyCode) _controllerType))
+        device = SteamVR_Controller.Input((int)trackedObj.index);
+        triggerButtonDown = device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger);
+
+        if (triggerButtonDown)
         {
             StartCoroutine("PressContinuously");
         }
-
-        if (Input.GetKeyUp((KeyCode) _controllerType))
-        {
-            StopCoroutine("PressContinuously");
-            FireBullet();
-        }
+        
+        
     }
 
     protected abstract IEnumerator PressContinuously();
     
-    public void MakeBullet()
-    {
-        madeObject = Instantiate(_thrownObject, transform.position, Quaternion.identity);
-    }
 }

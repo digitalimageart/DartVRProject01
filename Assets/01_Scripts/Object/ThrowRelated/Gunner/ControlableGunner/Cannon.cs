@@ -13,12 +13,12 @@ public class Cannon : ControllableThrower
         {
             if (madeObject != null)
             {
-                madeObject.transform.localScale += new Vector3(10, 10, 10) * Time.deltaTime;
+                madeObject.transform.localScale += new Vector3(0.1f,0.1f,0.1f) * Time.deltaTime;
                 //크기값을 받아 크기를 키워주기
                 //무게값을 받아 무게를 키워주기
                 //이펙트 넣어주기
             }
-            yield return new WaitForSeconds(0.0001f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -31,5 +31,8 @@ public class Cannon : ControllableThrower
         }
     }
 
-    
+    public override void MakeBullet()
+    {
+        madeObject = Instantiate(_thrownObject, transform.position, Quaternion.identity);
+    }
 }

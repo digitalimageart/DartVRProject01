@@ -14,9 +14,9 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Text _gameOver;
     [SerializeField]
-    private Text _time;
+    private TextMesh _time;
 
-    private int _leftTime = 180;
+    public int _leftTime = 100;
 
     public void Start()
     {
@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour {
     public void TimeTicker(System.Object source, System.Timers.ElapsedEventArgs e)
     {
         _leftTime--;
+        if (_leftTime < 0)
+            DataManager.Instance.GameOver();
     }
     
     public void ChangeBGColor(COLOR_TYPE type) {

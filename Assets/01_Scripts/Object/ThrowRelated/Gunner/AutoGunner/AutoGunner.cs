@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GUNNER_TYPE
+{
+    NEGATIVE,
+    DART
+}
+
 public class AutoGunner : Gunner { 
+    
+    public GUNNER_TYPE type { get; set; }
 
     public float fireInterval
     {
@@ -43,12 +51,25 @@ public class AutoGunner : Gunner {
         {
             MakeBullet();
             FireBullet();
-            yield return new WaitForSeconds(fireInterval);
+            if(type == GUNNER_TYPE.NEGATIVE)
+                yield return new WaitForSeconds(new System.Random().Next(1,4));
+            else
+                yield return new WaitForSeconds(fireInterval);
         }
     }
 
     public override void FireBullet()
     {
         _madeBullet.GetComponent<Rigidbody>().AddForce((target.position - transform.position).normalized * firePower);
+    }
+
+    public override void MakeBullet()
+    {
+        if (type == GUNNER_TYPE.DART)
+            bulletObject = GunnerManager.Instance.RetunRandomDartBullet();
+        else
+            bulletObject = GunnerManager.Instance.ReturnRandomNegativeBullet();
+
+        _madeBullet = Instantiate(_bulletObject, transform.position, Quaternion.identity) as Bullet;
     }
 }

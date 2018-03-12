@@ -5,8 +5,14 @@ using UnityEngine;
 
 public abstract class Gunner : MonoBehaviour
 {
-    [SerializeField]
     protected Bullet _bulletObject;
+    public Bullet bulletObject
+    {
+        set
+        {
+            _bulletObject = value;
+        }
+    }
 
     public float firePower
     {
@@ -17,8 +23,5 @@ public abstract class Gunner : MonoBehaviour
 
     public abstract void FireBullet();
 
-    public void MakeBullet()
-    {
-        _madeBullet = Instantiate(_bulletObject, transform.position, Quaternion.identity) as Bullet;
-    }
+    public abstract void MakeBullet();
 }
