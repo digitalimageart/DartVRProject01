@@ -16,17 +16,24 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Text _time;
 
+    private int _leftTime = 180;
+
     public void Start()
     {
         _hitEffectBackGroundCanvasGroup = _hitEffectBackGround.GetComponent<CanvasGroup>();
         _hitEffectBackGroundImg = _hitEffectBackGround.GetComponent<Image>();
     }
 
-    private void Update()
+    public void Update()
     {
-        _time.text = DataManager.Instance.score.ToString();
+        _time.text = _leftTime.ToString();
     }
 
+    public void TimeTicker(System.Object source, System.Timers.ElapsedEventArgs e)
+    {
+        _leftTime--;
+    }
+    
     public void ChangeBGColor(COLOR_TYPE type) {
 
         _hitEffectBackGroundCanvasGroup.alpha = 0.5f;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -10,7 +11,21 @@ public class DataManager : SingleTon<DataManager> {
     //Read Only Score
     private int _score;
 
-    public List<PlayerResult> playerList = new List<PlayerResult>();
+    public List<PlayerResult> playerList {
+        get
+        {
+            if(playerList == null)
+            {
+                Load();
+            }
+
+            return playerList;
+        }
+        set
+        {
+            playerList = value;
+        }
+    }
 
     public int score { get { return _score; } }
     [HideInInspector]
@@ -27,20 +42,18 @@ public class DataManager : SingleTon<DataManager> {
 
     private DataManager() { }
 
+    private System.Timers.Timer timer;
+
     private void Start()
     {
-        stopwatch.Start();
+        timer = new System.Timers.Timer(1000); // per 1sec
+        timer.Elapsed += _ui.TimeTicker;
+        timer.Start();
         _score = INITIALSCORE;
         isEffectBulletTime = false;
         _dartList = new List<DART_TYPE?>();
     }
-
-    //StopWatch
-    public System.Diagnostics.Stopwatch stopwatch
-    {
-        get { return new System.Diagnostics.Stopwatch(); }
-    }
-
+    
     public void DARTBulletHit(int score, COLOR_TYPE color, DART_TYPE d_type) {
         ChangeScore(score);
         FireBGColorChange(color);
@@ -98,19 +111,22 @@ public class DataManager : SingleTon<DataManager> {
 
     private void GameOver()
     {
-        stopwatch.Stop();
+        player.tag = "GameOver";
+        timer.Stop();
         _ui.ShowGameOver();
         SaveResult();
     }
 
-
     private void SaveResult()
     {
+        //이름, 과 입력 받은후에 저장해야 한다.
+        //Score과 남은시간을 이용하여 최종점수를 계산해야 한다.
+
+        playerList.Sort();
+        Save();
     }
 
     //IO
-
-
     private string GetSaveRoute(string data)
     {
         string route;
@@ -122,8 +138,8 @@ public class DataManager : SingleTon<DataManager> {
         dirRoute = Application.persistentDataPath + "/DataFiles/" + data;
 
 #elif (UNITY_STANDALONE_WIN)
-        route = Application.dataPath + "/"+data.ToString("G")+"/"+data.ToString("G")+".json";
-        dirRoute = Application.dataPath + "/"+data.ToString("G");
+        route = Application.dataPath + "/"+ data +"/"+ data +".json";
+        dirRoute = Application.dataPath + "/"+data;
 #endif
         dir = new DirectoryInfo(dirRoute);
 
@@ -135,6 +151,7 @@ public class DataManager : SingleTon<DataManager> {
         return route;
 
     }
+
     private void Load()
     {
         string JsonString;
@@ -175,9 +192,23 @@ public class DataManager : SingleTon<DataManager> {
 
 }
 
-public class PlayerResult
+public class PlayerResult :IComparable<PlayerResult>, IEquatable<PlayerResult>
 {
     string name;
     string department;
     int score;
+
+    public int CompareTo(PlayerResult other)
+    {
+        if (other == null)
+            return 1;
+        else
+            return this.score.CompareTo(other.score);
+    }
+
+    public bool Equals(PlayerResult other)
+    {
+        if (other == null) return false;
+        return this.score.Equals(other.score);
+    }
 }
