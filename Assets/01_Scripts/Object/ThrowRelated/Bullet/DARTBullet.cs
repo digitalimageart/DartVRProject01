@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DARTBullet : Bullet{
-
+    
     [SerializeField]
     private DART_TYPE _dartType;
-
+    
     public override void Effect()
     {
-        
     }
 
     public override void Hit(GameObject obj)

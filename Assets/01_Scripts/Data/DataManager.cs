@@ -6,15 +6,22 @@ using UnityEngine;
 
 public class DataManager : SingleTon<DataManager> {
 
-    private const int INITIALSCORE = 5000;
+    private const int INITIALSCORE = 2000;
 
     //Read Only Score
     private int _score;
+    public int score { get { return _score; } }
 
+    [HideInInspector]
+    public int spcAtkNum = 2;
+    [HideInInspector]
+    public bool isEffectBulletTime;
+    private List<PlayerResult> _playerList;
+    [HideInInspector]
     public List<PlayerResult> playerList {
         get
         {
-            if(playerList == null)
+            if(_playerList == null)
             {
                 Load();
             }
@@ -23,32 +30,24 @@ public class DataManager : SingleTon<DataManager> {
         }
         set
         {
-            playerList = value;
+            _playerList = value;
         }
     }
 
-    public int spcAtkNum = 2;
-
-    public int score { get { return _score; } }
-    [HideInInspector]
-    public bool isEffectBulletTime;
-    
+    public Target player;
     public GameObject[] Effects;
 
     [SerializeField]
     private UIManager _ui;
-    
-    public Target player;
-
     [SerializeField]
     private CollectedDart[] _darts;
-
+    
+    
+    private System.Timers.Timer timer;
     private List<DART_TYPE?> _dartList;
 
     private DataManager() { }
-
-    private System.Timers.Timer timer;
-
+    
     private void Start()
     {
         timer = new System.Timers.Timer(1000); // per 1sec
@@ -106,9 +105,13 @@ public class DataManager : SingleTon<DataManager> {
 
     public void CheckGameOver()
     {
-        if (_score <= 0 || _dartList.Count == 4)
+        if (_score <= 0)
         {
             GameOver();
+        }
+        if (_dartList.Count == 4)
+        {
+            GameClear();
         }
     }
 
@@ -117,13 +120,30 @@ public class DataManager : SingleTon<DataManager> {
         player.tag = "GameOver";
         timer.Stop();
         _ui.ShowGameOver();
-        SaveResult();
+    }
+
+    private void GameClear()
+    {
+        player.tag = "GameOver";
+        timer.Stop();
+        _ui.ShowGameOver();
+        ShowSaveWindow();
+    }
+
+    public void ShowSaveWindow()
+    {
+        //_ui.
     }
 
     private void SaveResult()
     {
         //이름, 과 입력 받은후에 저장해야 한다.
         //Score과 남은시간을 이용하여 최종점수를 계산해야 한다.
+        int ResultScore = score + _ui._leftTime * 10;
+
+        _ui.SaveState("score : " + score.ToString() + " LeftTime * 10 : " + _ui._leftTime * 10 +" = "+ ResultScore);
+
+        //PlayerResult player = new PlayerResult();
 
         playerList.Sort();
         Save();
@@ -137,8 +157,8 @@ public class DataManager : SingleTon<DataManager> {
         DirectoryInfo dir;
 
 #if (UNITY_EDITOR)
-        route = Application.persistentDataPath + "/DataFiles/" + data + "/" + data + ".json";
-        dirRoute = Application.persistentDataPath + "/DataFiles/" + data;
+        route = Application.dataPath + "/DataFiles/" + data + "/" + data + ".json";
+        dirRoute = Application.dataPath + "/DataFiles/" + data;
 
 #elif (UNITY_STANDALONE_WIN)
         route = Application.dataPath + "/"+ data +"/"+ data +".json";
@@ -191,8 +211,6 @@ public class DataManager : SingleTon<DataManager> {
 
         File.WriteAllText(route, Json);
     }
-
-
 }
 
 public class PlayerResult :IComparable<PlayerResult>, IEquatable<PlayerResult>
@@ -200,6 +218,13 @@ public class PlayerResult :IComparable<PlayerResult>, IEquatable<PlayerResult>
     string name;
     string department;
     int score;
+
+    public PlayerResult(string name, string department, int score)
+    {
+        this.name = name;
+        this.department = department;
+        this.score = score;
+    }
 
     public int CompareTo(PlayerResult other)
     {
@@ -213,5 +238,10 @@ public class PlayerResult :IComparable<PlayerResult>, IEquatable<PlayerResult>
     {
         if (other == null) return false;
         return this.score.Equals(other.score);
+    }
+
+    public override string ToString()
+    {
+        return name +" "+ department + " " + score.ToString();
     }
 }

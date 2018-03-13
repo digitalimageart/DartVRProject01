@@ -9,9 +9,13 @@ public abstract class Bullet : MonoBehaviour {
     [SerializeField]
     protected int _bulletPoint;
 
+    [SerializeField]
+    private GameObject audio;
+
     public void Start()
     {
         StartCoroutine("Death");
+        
     }
 
     IEnumerator Death()
@@ -24,6 +28,7 @@ public abstract class Bullet : MonoBehaviour {
     {
         if (other.tag == "Target")
         {
+            GameObject src = Instantiate(audio.gameObject);
             Hit(other.gameObject);
             Destroy(this.gameObject);
             DataManager.Instance.CheckGameOver();

@@ -15,6 +15,16 @@ public class UIManager : MonoBehaviour {
     private Text _gameOver;
     [SerializeField]
     private TextMesh _time;
+    [SerializeField]
+    private TextMesh[] _ranks;
+    [SerializeField]
+    public InputField id;
+    [SerializeField]
+    public InputField department;
+    [SerializeField]
+    private Text score;
+    [SerializeField]
+    private Image SaveImg;
 
     public int _leftTime = 100;
 
@@ -22,6 +32,21 @@ public class UIManager : MonoBehaviour {
     {
         _hitEffectBackGroundCanvasGroup = _hitEffectBackGround.GetComponent<CanvasGroup>();
         _hitEffectBackGroundImg = _hitEffectBackGround.GetComponent<Image>();
+
+        //for(int i = 0; i < _ranks.Length; i++)
+        //{
+        //    try
+        //    {
+        //        _ranks[i].text = "#" + i + DataManager.Instance.playerList[i].ToString();
+        //    }catch(System.ArgumentOutOfRangeException e){
+        //        _ranks[i].text = "";
+        //    }
+        //}
+    }
+
+    public void SaveState(string score)
+    {
+        this.score.text = score;
     }
 
     public void Update()

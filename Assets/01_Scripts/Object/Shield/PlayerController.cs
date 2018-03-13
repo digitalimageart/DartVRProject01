@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     {
         device = SteamVR_Controller.Input((int)trackedObj.index);
         triggerButtonDown = device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger);
-        isGripped = device.GetPress(SteamVR_Controller.ButtonMask.Grip);
+        //isGripped = device.GetPress(SteamVR_Controller.ButtonMask.Grip);
 
         if (triggerButtonDown)
         {
@@ -42,13 +42,13 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (isGripped)
-        {
-            if (DataManager.Instance.spcAtkNum  > 0)
-            {
-                DataManager.Instance.spcAtkNum--;
-                DataManager.Instance.FireSpcAtk();
-            }
-        }
+        //if (isGripped)
+        //{
+        //    if (DataManager.Instance.spcAtkNum  > 0)
+        //    {
+        //        DataManager.Instance.spcAtkNum--;
+        //        DataManager.Instance.FireSpcAtk();
+        //    }
+        //}
     }
 }
