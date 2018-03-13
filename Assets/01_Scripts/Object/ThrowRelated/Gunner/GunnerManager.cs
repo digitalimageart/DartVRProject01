@@ -5,9 +5,12 @@ using UnityEngine;
 public class GunnerManager : SingleTon<GunnerManager>
 {
     private GunnerManager() { }
-
+    [SerializeField]
+    private Transform _spcGunnerPosition;
     [SerializeField]
     private AutoGunner _gunnerPrefab;
+    [SerializeField]
+    private SpcGunner _spcGunnerPrefab;
 
     [SerializeField]
     private DARTBullet[] _dartBullets;
@@ -59,6 +62,11 @@ public class GunnerManager : SingleTon<GunnerManager>
         _madeNegativeGunner.type = GUNNER_TYPE.NEGATIVE;
     }
 
+    private void MakeSpcGunner()
+    {
+        SpcGunner spcGunner = Instantiate(_spcGunnerPrefab, _spcGunnerPosition.position,Quaternion.identity,transform) as SpcGunner;
+        spcGunner.firePower = 200;
+    }
     public Bullet ReturnRandomNegativeBullet()
     {
         return _negativeBullets[(new System.Random()).Next(0, 5)];
@@ -71,6 +79,11 @@ public class GunnerManager : SingleTon<GunnerManager>
         _madeDartGunner.firePower = 700;
         _madeDartGunner.target = DataManager.Instance.player.transform;
         _madeDartGunner.type = GUNNER_TYPE.DART;
+    }
+
+    public void FireSpcAtk()
+    {
+        MakeSpcGunner();
     }
 
     public Bullet RetunRandomDartBullet()

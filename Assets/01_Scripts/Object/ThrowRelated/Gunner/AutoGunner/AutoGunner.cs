@@ -49,12 +49,15 @@ public class AutoGunner : Gunner {
     {
         while (true)
         {
-            MakeBullet();
-            FireBullet();
-            if(type == GUNNER_TYPE.NEGATIVE)
-                yield return new WaitForSeconds(new System.Random().Next(1,4));
-            else
-                yield return new WaitForSeconds(fireInterval);
+            if (!DataManager.Instance.isEffectBulletTime)
+            {
+                MakeBullet();
+                FireBullet();
+                if (type == GUNNER_TYPE.NEGATIVE)
+                    yield return new WaitForSeconds(new System.Random().Next(1, 4));
+                else
+                    yield return new WaitForSeconds(fireInterval);
+            }
         }
     }
 

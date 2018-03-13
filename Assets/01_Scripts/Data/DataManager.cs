@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DataManager : SingleTon<DataManager> {
 
-    private const int INITIALSCORE = 1000;
+    private const int INITIALSCORE = 5000;
 
     //Read Only Score
     private int _score;
@@ -26,6 +26,8 @@ public class DataManager : SingleTon<DataManager> {
             playerList = value;
         }
     }
+
+    public int spcAtkNum = 2;
 
     public int score { get { return _score; } }
     [HideInInspector]
@@ -92,6 +94,7 @@ public class DataManager : SingleTon<DataManager> {
         _ui.ChangeBGColor(COLOR_TYPE.SPECIAL);
         StartCoroutine("ChangePlayerTag");
         isEffectBulletTime = true;
+        GunnerManager.Instance.FireSpcAtk();
     }
 
     IEnumerator ChangePlayerTag()

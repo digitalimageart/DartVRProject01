@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Gunner : MonoBehaviour
 {
+    [SerializeField]
     protected Bullet _bulletObject;
     public Bullet bulletObject
     {

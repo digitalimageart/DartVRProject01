@@ -13,6 +13,7 @@ public class EffectBullet : Bullet {
     {
         DataManager.Instance.isEffectBulletTime = false;
         Effect();
+        Destroy(this.gameObject);
     }
 
 }

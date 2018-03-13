@@ -9,7 +9,7 @@ public class Cannon : ControllableThrower
     {
 		MakeBullet ();
 		madeObject.GetComponent<Rigidbody> ().useGravity = false;
-        while (true)
+        for(int i = 0; i < 10; i++)
         {
             if (madeObject != null)
             {
@@ -20,6 +20,7 @@ public class Cannon : ControllableThrower
             }
             yield return new WaitForSeconds(0.1f);
         }
+        FireBullet();
     }
 
     public override void FireBullet()
