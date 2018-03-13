@@ -14,6 +14,7 @@ public class SingleTon<T> : MonoBehaviour where T : MonoBehaviour {
             if (_intstance == null)
             {
                 _intstance = FindObjectOfType(typeof(T)) as T;
+
                 if (_intstance == null)
                     Debug.LogError("There needs to be one active MyClass script on a GameObject in your scene.");
             }

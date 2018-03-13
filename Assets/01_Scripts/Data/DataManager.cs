@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DataManager : SingleTon<DataManager> {
 
-    private const int INITIALSCORE = 10000;
+    private const int INITIALSCORE = 1000;
 
     //Read Only Score
     private int _score;
@@ -103,7 +103,7 @@ public class DataManager : SingleTon<DataManager> {
 
     public void CheckGameOver()
     {
-        if (_score < 0 || _dartList.Count == 4)
+        if (_score <= 0 || _dartList.Count == 4)
         {
             GameOver();
         }

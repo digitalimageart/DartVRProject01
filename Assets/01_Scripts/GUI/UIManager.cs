@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour {
     private Image _hitEffectBackGroundImg;
 
     [SerializeField]
-    private Image _gauge;
+    private CubeEnergyBar _gauge;
     [SerializeField]
     private Text _gameOver;
     [SerializeField]
@@ -35,7 +35,12 @@ public class UIManager : MonoBehaviour {
         if (_leftTime < 0)
             DataManager.Instance.GameOver();
     }
-    
+
+    public void ChangeGaugeScore(int score, int originScore)
+    {
+        _gauge.ChangeGaugeScore(score, originScore);
+    }
+
     public void ChangeBGColor(COLOR_TYPE type) {
 
         _hitEffectBackGroundCanvasGroup.alpha = 0.5f;
@@ -64,10 +69,6 @@ public class UIManager : MonoBehaviour {
 
             yield return new WaitForSeconds(0.0001f);
         }
-    }
-
-    public void ChangeGaugeScore(int score,int originScore) {
-        _gauge.fillAmount += score/originScore; 
     }
 
     public void ShowGameOver() {
