@@ -16,11 +16,15 @@ public class ShieldBroken : MonoBehaviour {
 
     IEnumerator ShieldBreakEffect()
     {
+        GameObject obj;
         for (int i = 1; i < positions.Length; i++)
         {
-            GameObject obj = Instantiate(DataManager.Instance.Effects[1], positions[i]);
+             obj = Instantiate(DataManager.Instance.Effects[1], positions[i]);
             yield return new WaitForSeconds(0.5f);
         }
+
+        obj = Instantiate(DataManager.Instance.Effects[2], this.transform);
+        yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
 }

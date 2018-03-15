@@ -6,12 +6,21 @@ public class Shield : MonoBehaviour {
 
     [SerializeField]
     private Transform ShieldEffect;
+    [SerializeField]
+    private TextMesh scoreText;
 
     public int HealthPoint = 2000;
-    
+
+    private void Start()
+    {
+        scoreText.text = HealthPoint.ToString();
+    }
+
     public void ShieldHit(int score)
     {
         HealthPoint += score;
+        if(HealthPoint >= 0)
+        scoreText.text = HealthPoint.ToString();
         CheckShieldBroken();
     }
 
@@ -25,7 +34,7 @@ public class Shield : MonoBehaviour {
     private void ShieldDestroy()
     {
         Transform obj = Instantiate(ShieldEffect, this.transform);
-        Invoke("DestoryObj",2.5f);
+        Invoke("DestoryObj",3f);
     }
 
     private void DestoryObj()
