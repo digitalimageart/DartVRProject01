@@ -41,14 +41,5 @@ public class PlayerController : MonoBehaviour {
                 isShieldEnabled = true;
             }
         }
-
-        //if (isGripped)
-        //{
-        //    if (DataManager.Instance.spcAtkNum  > 0)
-        //    {
-        //        DataManager.Instance.spcAtkNum--;
-        //        DataManager.Instance.FireSpcAtk();
-        //    }
-        //}
     }
 }
