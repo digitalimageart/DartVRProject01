@@ -7,18 +7,7 @@ public abstract class Gunner : MonoBehaviour
 {
     [SerializeField]
     protected Bullet _bulletObject;
-    public Bullet bulletObject
-    {
-        set
-        {
-            _bulletObject = value;
-        }
-    }
-
-    public float firePower
-    {
-        get; set;
-    }
+    protected float _firePower;
     protected Bullet _madeBullet;
 
 

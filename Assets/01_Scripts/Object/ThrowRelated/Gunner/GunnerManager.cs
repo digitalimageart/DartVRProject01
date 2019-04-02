@@ -35,11 +35,8 @@ public class GunnerManager : SingleTon<GunnerManager>
         }
 
         _makeTime = new float[5];
-        _makeTime[0] = 20f;
-        _makeTime[1] = 20f;
-        _makeTime[2] = 20f;
-        _makeTime[3] = 20f;
-        _makeTime[4] = 20f;
+        for (int i = 0; i < 5; i++)
+            _makeTime[i] = 20f;
 
         _gunners = new List<AutoGunner>();
         StartCoroutine("MakeNegativeGunners");
@@ -56,16 +53,16 @@ public class GunnerManager : SingleTon<GunnerManager>
 
     private void MakeNegativeGunner(int i)
     {
-        _madeNegativeGunner = Instantiate(_gunnerPrefab, transform) as AutoGunner;
-        _madeNegativeGunner.firePower = 1200;
-        _madeNegativeGunner.target = DataManager.Instance.player.transform;
-        _madeNegativeGunner.type = GUNNER_TYPE.NEGATIVE;
+        _madeNegativeGunner = AutoGunner.AutoGunnerFactory(GUNNER_TYPE.NEGATIVE, _gunnerPrefab, transform)
+            .setFirePower(1200)
+            .setTarget(DataManager.Instance.player.transform)
+            .Build();
     }
 
     private void MakeSpcGunner()
     {
-        SpcGunner spcGunner = Instantiate(_spcGunnerPrefab, _spcGunnerPosition.position,Quaternion.identity,transform) as SpcGunner;
-        spcGunner.firePower = 200;
+       // SpcGunner spcGunner = Instantiate(_spcGunnerPrefab, _spcGunnerPosition.position,Quaternion.identity,transform) as SpcGunner;
+       // spcGunner.firePower = 200;
     }
     public Bullet ReturnRandomNegativeBullet()
     {
@@ -74,11 +71,11 @@ public class GunnerManager : SingleTon<GunnerManager>
 
     private void MakeDartGunner()
     {
-        _madeDartGunner = Instantiate(_gunnerPrefab, transform) as AutoGunner;
-        _madeDartGunner.fireInterval = 5f;
-        _madeDartGunner.firePower = 700;
-        _madeDartGunner.target = DataManager.Instance.player.transform;
-        _madeDartGunner.type = GUNNER_TYPE.DART;
+        _madeDartGunner = AutoGunner.AutoGunnerFactory(GUNNER_TYPE.NEGATIVE, _gunnerPrefab, transform)
+            .setFireInterval(5f)
+            .setFirePower(700)
+            .setTarget(DataManager.Instance.player.transform)
+            .Build();
     }
 
     public void FireSpcAtk()

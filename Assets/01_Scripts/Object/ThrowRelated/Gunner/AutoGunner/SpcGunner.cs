@@ -13,7 +13,7 @@ public class SpcGunner : Gunner{
     public override void FireBullet()
     {
         Transform target = DataManager.Instance.player.transform;
-        _madeBullet.GetComponent<Rigidbody>().AddForce((target.position - transform.position).normalized * firePower);
+        _madeBullet.GetComponent<Rigidbody>().AddForce((target.position - transform.position).normalized * _firePower);
     }
 
     public override void MakeBullet()
